@@ -18,6 +18,7 @@
     "seedrandom": "^2.4.2",
     "socket.io": "^1.7.3",
     "standard-deviation": "^1.0.0",
-    "stdev": "0.0.1"
+    "stdev": "0.0.1",
+    "variance": "0.0.1"
   }
 }
