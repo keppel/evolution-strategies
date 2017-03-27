@@ -12,7 +12,7 @@ let seedrandom = require('seedrandom')
 seedrandom('seed', { global: true })
 
 const sigma = 0.1
-const alpha = 0.1
+const alpha = 0.2
 
 function parameters (model, newParams) {
   if (newParams) {
@@ -45,9 +45,9 @@ function parameters (model, newParams) {
 let opts = {}
 let policy = Sequential(opts)
 
-policy.add(Linear(4, 20))
+policy.add(Linear(4, 30))
 policy.add(ReLU())
-policy.add(Linear(20, 2))
+policy.add(Linear(30, 2))
 
 let { sample, getNoiseIndex } = ES.noise(0)
 let numParams = parameters(policy).length
@@ -118,8 +118,9 @@ env.on('ready', () => {
 
 function act (policy, observation) {
   let output = policy.forward(observation)
-  let actionProbs = softmax(output).data
-  let action = getRandomItem(Object.keys(actionProbs).map(Number), actionProbs)
+  // let actionProbs = softmax(output).data
+  // let action = getRandomItem(Object.keys(actionProbs).map(Number), actionProbs)
+  let action = argmax(output)
   return action
 }
 

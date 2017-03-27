@@ -1,7 +1,7 @@
 let io = require('socket.io')(3001)
 
 let blocks = [[]]
-const blockSize = 6
+const blockSize = 5
 let totalReward = 0
 let totalEpisodes = 0
 io.on('connection', socket => {
