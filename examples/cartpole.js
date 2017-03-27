@@ -12,7 +12,7 @@ let seedrandom = require('seedrandom')
 seedrandom('seed', { global: true })
 
 const sigma = 0.1
-const alpha = 0.01
+const alpha = 0.1
 
 function parameters (model, newParams) {
   if (newParams) {
@@ -93,7 +93,7 @@ env.on('ready', () => {
       episodeReward += reward
     }
     if (!done) {
-      env.step(act(policy, observation), { render: false })
+      env.step(act(policy, observation), { render: process.argv.length === 3 })
     } else {
       socket.emit('episode', { reward: episodeReward, noiseIndex})
       env.reset()
