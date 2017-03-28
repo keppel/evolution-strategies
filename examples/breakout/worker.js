@@ -1,13 +1,20 @@
-let { Linear, Sequential, ReLU } = require('weblearn')
 let { worker } = require('../../')
 let Env = require('./lib/env.js')
 let seedrandom = require('seedrandom')
-let parameters = require('./lib/parameters.js')
 let argmax = require('./lib/argmax.js')
 let softmax = require('./lib/softmax.js')
 let weighted = require('./lib/weighted-toss.js')
+let convnetjs = require('./lib/convnet.js')
 
 let env = Env(process.argv[2] || 'CartPole-v0')
+
+let net = new Net()
+let layers = [
+  { type: 'input', out_sx: 1, out_sy: 1, out_depth: 10 },
+  { type: 'fc', out_sx: 1, out_sy: 1, out_depth: 10 }
+]
+net.makeLayers(layers)
+console.log(net.forward([1, 1]))
 
 env.on('ready', () => {
   let numActions = env.actionSpace.n
@@ -16,7 +23,6 @@ env.on('ready', () => {
     continuousActions = true
     numActions = env.actionSpace.shape[0]
   }
-  console.log(env)
   let numInputs = env.observationSpace.shape[0]
 
   // seed random globally for a sec so we get the same parameter initialization.
@@ -25,13 +31,8 @@ env.on('ready', () => {
   seedrandom('seed', { global: true })
 
   // we use a neural network to parameterize the policy we're optimizing.
-  let opts = {}
-  let policy = Sequential(opts)
-  policy.add(Linear(numInputs, 30))
-  policy.add(ReLU())
-  policy.add(Linear(30, 30))
-  policy.add(ReLU())
-  policy.add(Linear(30, numActions))
+
+  console.log(net)
 
   seedrandom(unseed, { global: true })
   worker({
