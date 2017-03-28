@@ -1,4 +1,5 @@
-## nes.js
+## evolution-strategies
+distributed parameter optimization through natural evolution strategies
 
 ### usage
 `worker.js`:
