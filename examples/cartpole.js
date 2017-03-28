@@ -8,11 +8,13 @@ let stdev = require('standard-deviation')
 let socket = require('socket.io-client').connect('http://localhost:3001')
 let seedrandom = require('seedrandom')
 
+// since workers will share a seed for Math.random, give them a unique seed for noise index generation
+let uniqueSeed = Math.floor(Math.random() * 1000000000)
 // seed Math.random globally so the network initializes the same way for every worker
 seedrandom('seed', { global: true })
 
 const sigma = 0.1
-const alpha = 0.2
+const alpha = 0.05
 
 function parameters (model, newParams) {
   if (newParams) {
@@ -45,11 +47,11 @@ function parameters (model, newParams) {
 let opts = {}
 let policy = Sequential(opts)
 
-policy.add(Linear(4, 30))
+policy.add(Linear(4, 40))
 policy.add(ReLU())
-policy.add(Linear(30, 2))
+policy.add(Linear(40, 2))
 
-let { sample, getNoiseIndex } = ES.noise(0)
+let { sample, getNoiseIndex } = ES.noise(0, uniqueSeed)
 let numParams = parameters(policy).length
 let bufferedUpdateVector = Array(numParams).fill(0)
 socket.on('block', block => {
@@ -87,6 +89,7 @@ function removeNoise (policy, noiseIndex) {
 let env = Env('CartPole-v0')
 env.on('ready', () => {
   let noiseIndex = getAndApplyNoiseVector(policy)
+  console.log(env)
   let episodeReward = 0
   env.on('observation', ({ observation, reward, done, info }) => {
     if (reward) {

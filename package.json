@@ -1,16 +1,16 @@
 {
-  "name": "esjs",
-  "version": "1.0.0",
-  "description": "",
+  "name": "evolution-strategies",
+  "version": "0.0.1",
+  "description": "distributed parameter optimization through natural evolution strategies",
   "main": "index.js",
+  "browser": "browser.js",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Judd Keppel <kepzorz@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "gaussian": "^1.1.0",

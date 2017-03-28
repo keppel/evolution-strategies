@@ -1,14 +1,16 @@
 let io = require('socket.io')(3001)
 
 let blocks = [[]]
-const blockSize = 5
+const blockSize = 25
 let totalReward = 0
 let totalEpisodes = 0
 io.on('connection', socket => {
   // when worker connects, send them the entire history so far
-  blocks.forEach((block, index) => {
-    if (index < blocks.length - 1) {
-      socket.emit('block', block)
+  socket.emit('initialize', {
+    blocks: blocks.slice(0, blocks.length - 2),
+    hyperparameters: {
+      sigma: 0.2,
+      alpha: 0.2
     }
   })
 

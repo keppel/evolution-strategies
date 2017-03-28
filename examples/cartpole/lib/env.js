@@ -33,13 +33,15 @@ class Env extends EventEmitter {
   }
 
   step (action, {render = false}) {
-    request.post(`${gymHost}/envs/${this.instanceId}/step/`)
+    setTimeout(() => {
+      request.post(`${gymHost}/envs/${this.instanceId}/step/`)
       .send({action, render})
       .end((err, {body}) => {
         let {observation, reward, info, done} = body
         observation = ndarray(observation)
         this.emit('observation', {observation, reward, info, done})
       })
+    }, Math.random() * 0)
   }
 }
 
