@@ -41,7 +41,7 @@ class Env extends EventEmitter {
         observation = ndarray(observation)
         this.emit('observation', {observation, reward, info, done})
       })
-    }, Math.random() * 0)
+    }, Math.random() * 500)
   }
 }
 
