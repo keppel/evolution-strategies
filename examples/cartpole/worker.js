@@ -29,8 +29,6 @@ env.on('ready', () => {
   let policy = Sequential(opts)
   policy.add(Linear(numInputs, 30))
   policy.add(ReLU())
-  policy.add(Linear(30, 30))
-  policy.add(ReLU())
   policy.add(Linear(30, numActions))
 
   seedrandom(unseed, { global: true })
