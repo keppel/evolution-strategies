@@ -1,5 +1,7 @@
 ## evolution-strategies
-distributed parameter optimization through natural evolution strategies
+distributed parameter optimization through natural evolution strategies.
+
+[openai's blog post](https://blog.openai.com/evolution-strategies/)
 
 ### usage
 minimal example:
