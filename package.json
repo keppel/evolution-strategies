@@ -1,14 +1,13 @@
 {
   "name": "evolution-strategies",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "distributed parameter optimization through natural evolution strategies",
   "main": "index.js",
   "browser": "browser.js",
   "directories": {
     "example": "examples"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "Judd Keppel <kepzorz@gmail.com>",
   "license": "ISC",
