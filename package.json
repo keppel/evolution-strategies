@@ -12,6 +12,7 @@
   "author": "Judd Keppel <kepzorz@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "debug": "^2.6.3",
     "gaussian": "^1.1.0",
     "ndarray": "^1.0.18",
     "seedrandom": "^2.4.2",
