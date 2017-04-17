@@ -48,9 +48,11 @@ properties on `opts`:
 - `initialParameters`: array. required. numbers representing the initial state of the parameters you're trying to optimize. make sure these are the same for all workers!
 - `fitness`: function. required. see example above, this is how you evaluate your parameters.
 - `optimizer`: string. optional, default: 'adam'. which optimizer to use; currently supports 'adam' or 'sgd'
+- `cacheNoise`: boolean. optional, default: `false`. if `true`, a block of gaussian noise is generated at startup instead of on-the-fly.
 
 #### master(opts)
 properties on `opts`:
 - `alpha`: number. optional, default: 0.01. basically your stepsize / learning rate.
 - `sigma`: number. optional, default: 0.1. variance for trial parameters in fitness function.
 - `blockSize`: number or function. optional, default: `n => n`. how many episodes to run between parameter updates. if it's a function, it's passed the number of workers currently online.
+- `savePath`: string. optional. if supplied, models will be saved to a file at this path and loaded from it when you start the master
