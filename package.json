@@ -1,6 +1,6 @@
 {
   "name": "evolution-strategies",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "distributed parameter optimization through natural evolution strategies",
   "main": "index.js",
   "browser": "browser.js",
